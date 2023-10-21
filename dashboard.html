@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dashboard - Active Online Software Page</title>
+    <meta
+      property="og:title"
+      content="dashboard - Active Online Software Page"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <style>
+       body::-webkit-scrollbar {
+         width: 0.5em;
+         z-index: 100;
+         background-color:transparent;
+       }
+
+
+      body::-webkit-scrollbar-thumb {
+         background-color:white;
+         box-shadow:0 -100vh 0 100vh #5128f5;//magic
+       }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./dashboard.css" rel="stylesheet" />
+
+      <div class="dashboard-container">
+        <section class="dashboard-hero">
+          <div class="dashboard-menu">
+            <div id="mobile-menu" class="dashboard-mobile-navigation">
+              <img
+                alt="pastedImage"
+                src="public/pastedimage-no9b-1500h.png"
+                class="dashboard-logo"
+              />
+              <div class="dashboard-links">
+                <span class="Link">Solutions</span>
+                <span class="Link">How it works</span>
+                <span class="Link">Prices</span>
+              </div>
+              <div id="close-mobile-menu" class="dashboard-close-mobile-menu">
+                <svg
+                  viewBox="0 0 804.5714285714286 1024"
+                  class="dashboard-icon"
+                >
+                  <path
+                    d="M741.714 755.429c0 14.286-5.714 28.571-16 38.857l-77.714 77.714c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-168-168-168 168c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-77.714-77.714c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l168-168-168-168c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l77.714-77.714c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l168 168 168-168c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l77.714 77.714c10.286 10.286 16 24.571 16 38.857s-5.714 28.571-16 38.857l-168 168 168 168c10.286 10.286 16 24.571 16 38.857z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-desktop-navigation">
+              <nav class="dashboard-centered">
+                <a href="index.html" class="dashboard-navlink">
+                  <img
+                    alt="pastedImage"
+                    src="public/logos/3-200h.png"
+                    class="dashboard-logo1"
+                  />
+                </a>
+                <div class="dashboard-links1">
+                  <span class="Link">About</span>
+                  <span class="Link">How it works</span>
+                  <span class="Link">Prices</span>
+                </div>
+                <div class="dashboard-left"></div>
+                <div class="dashboard-right">
+                  <a href="index.html" class="dashboard-navlink1">
+                    <div class="dashboard-get-started">
+                      <span class="dashboard-text06">Log out</span>
+                    </div>
+                  </a>
+                  <div id="open-mobile-menu" class="dashboard-burger-menu">
+                    <img
+                      alt="pastedImage"
+                      src="public/pastedimage-yxbd.svg"
+                      class="dashboard-mobile-menu-button"
+                    />
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div>
+              <div class="dashboard-container2">
+                <script>
+                  /*
+                  Mobile menu - Code Embed
+                  */
+
+                  // Mobile menu
+                  const mobileMenu = document.querySelector('#mobile-menu')
+
+                  // Buttons
+                  const closeButton = document.querySelector('#close-mobile-menu')
+                  const openButton = document.querySelector('#open-mobile-menu')
+
+                  // On openButton click, set the mobileMenu position left to -100vw
+                  openButton.addEventListener('click', function() {
+                      mobileMenu.style.transform = 'translateX(0%)'
+                  })
+
+                  // On closeButton click, set the mobileMenu position to 0vw
+                  closeButton.addEventListener('click', function() {
+                      mobileMenu.style.transform = 'translateX(100%)'
+                  })
+                </script>
+              </div>
+            </div>
+          </div>
+          <header class="dashboard-header">
+            <h3 class="dashboard-text07">
+              <span>Dashboard</span>
+              <br />
+              <br />
+            </h3>
+            <h1 class="dashboard-text11">Welcome Mr. Tushar Agarwal</h1>
+          </header>
+          <section class="dashboard-statistics">
+            <div class="dashboard-container3">
+              <div class="active-users1-active-users metrics">
+                <span class="active-users1-text"><span>5</span></span>
+                <span class="active-users1-text1"><span>— Your QR</span></span>
+              </div>
+              <div class="active-users1-active-users metrics">
+                <span class="active-users1-text"><span>3</span></span>
+                <span class="active-users1-text1">
+                  <span>— Active QR</span>
+                </span>
+              </div>
+              <div class="active-users1-active-users metrics">
+                <span class="active-users1-text"><span>2</span></span>
+                <span class="active-users1-text1">
+                  <span>— Inactive QR</span>
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="dashboard-features">
+          <div class="dashboard-container4">
+            <div class="dashboard-title"></div>
+            <h1 class="dashboard-text12">Tasks</h1>
+          </div>
+          <div class="dashboard-cards">
+            <div class="dashboard-container5">
+              <a href="activatestep1.html" class="dashboard-navlink2">
+                <div class="dashboard-schedule card">
+                  <span class="dashboard-text13">Activate New QR</span>
+                </div>
+              </a>
+              <div class="dashboard-publish card">
+                <span class="dashboard-text14">My QRs</span>
+              </div>
+            </div>
+            <div class="dashboard-container6">
+              <div class="dashboard-analyze card">
+                <span class="dashboard-text15">Edit Your QRs</span>
+              </div>
+              <div class="dashboard-get-leads card">
+                <span class="dashboard-text16">Recharge</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="dashboard-banners"></section>
+        <footer class="dashboard-footer">
+          <div class="dashboard-top">
+            <div class="dashboard-left1">
+              <span class="dashboard-text17">Subscribe to our newsletter</span>
+              <div class="dashboard-subscription">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="dashboard-textinput input"
+                />
+                <div class="dashboard-subscribe">
+                  <span class="dashboard-text18">Subscribe</span>
+                </div>
+              </div>
+              <span class="dashboard-text19">
+                By subscribing to our newsletter you agree with our Terms and
+                Conditions.
+              </span>
+            </div>
+            <div class="dashboard-right1">
+              <div class="dashboard-category">
+                <div class="dashboard-contact">
+                  <span class="dashboard-text20">Contact</span>
+                  <a
+                    href="mailto:use@active-app.com?subject=Support"
+                    class="dashboard-link"
+                  >
+                    KavachQR@ridebuddy.app
+                  </a>
+                </div>
+              </div>
+              <div class="dashboard-container7">
+                <div class="dashboard-category1">
+                  <span class="dashboard-text21">Social Media Handles</span>
+                  <div class="dashboard-links2">
+                    <span class="dashboard-text22">Twitter</span>
+                    <span class="dashboard-text23">Linkedin</span>
+                    <span class="dashboard-text24">Instagram</span>
+                    <span class="dashboard-text25">Facebook</span>
+                  </div>
+                </div>
+                <div class="dashboard-category2">
+                  <span class="dashboard-text26">
+                    &nbsp; &nbsp; &nbsp; Company
+                  </span>
+                  <div class="dashboard-links3">
+                    <span class="dashboard-text27">About</span>
+                    <span class="dashboard-text28">Team</span>
+                    <span class="dashboard-text29">News</span>
+                    <span class="dashboard-text30">Partners</span>
+                    <span class="dashboard-text31">Careers</span>
+                    <span class="dashboard-text32">Press &amp; Media</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-bottom">
+            <img
+              alt="pastedImage"
+              src="public/logos/3-200h.png"
+              class="dashboard-branding"
+            />
+          </div>
+          <span class="dashboard-text33">
+            Copyright @AP Mobility India Private Limited
+          </span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

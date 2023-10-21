@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dataentry - Active Online Software Page</title>
+    <title>QR Code Data Entry</title>
+    <meta
+      property="og:title"
+      content="dataentry - Active Online Software Page"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <style>
+       body::-webkit-scrollbar {
+         width: 0.5em;
+         z-index: 100;
+         background-color:transparent;
+       }
+
+
+      body::-webkit-scrollbar-thumb {
+         background-color:white;
+         box-shadow:0 -100vh 0 100vh #5128f5;//magic
+       }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./dataentry.css" rel="stylesheet" />
+
+      <div class="dataentry-container">
+        <section class="dataentry-hero">
+          <div class="dataentry-menu">
+            <div id="mobile-menu" class="dataentry-mobile-navigation">
+              <img
+                alt="pastedImage"
+                src="public/pastedimage-no9b-1500h.png"
+                class="dataentry-logo"
+              />
+              <div class="dataentry-links">
+                <span class="Link">Solutions</span>
+                <span class="Link">How it works</span>
+                <span class="Link">Prices</span>
+              </div>
+              <div id="close-mobile-menu" class="dataentry-close-mobile-menu">
+                <svg
+                  viewBox="0 0 804.5714285714286 1024"
+                  class="dataentry-icon"
+                >
+                  <path
+                    d="M741.714 755.429c0 14.286-5.714 28.571-16 38.857l-77.714 77.714c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-168-168-168 168c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-77.714-77.714c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l168-168-168-168c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l77.714-77.714c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l168 168 168-168c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l77.714 77.714c10.286 10.286 16 24.571 16 38.857s-5.714 28.571-16 38.857l-168 168 168 168c10.286 10.286 16 24.571 16 38.857z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="dataentry-desktop-navigation">
+              <nav class="dataentry-centered">
+                <div class="dataentry-container1">
+                  <img
+                    alt="pastedImage"
+                    src="public/logos/3-200h.png"
+                    class="dataentry-logo1"
+                  />
+                </div>
+                <div class="dataentry-links1">
+                  <span class="Link">Dashboard</span>
+                  <span class="Link">How it works</span>
+                  <span class="Link">Help</span>
+                </div>
+                <div class="dataentry-left"></div>
+                <div class="dataentry-right">
+                  <div id="open-mobile-menu" class="dataentry-burger-menu">
+                    <img
+                      alt="pastedImage"
+                      src="public/pastedimage-yxbd.svg"
+                      class="dataentry-mobile-menu-button"
+                    />
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div>
+              <div class="dataentry-container3">
+                <script>
+                  /*
+                  Mobile menu - Code Embed
+                  */
+
+                  // Mobile menu
+                  const mobileMenu = document.querySelector('#mobile-menu')
+
+                  // Buttons
+                  const closeButton = document.querySelector('#close-mobile-menu')
+                  const openButton = document.querySelector('#open-mobile-menu')
+
+                  // On openButton click, set the mobileMenu position left to -100vw
+                  openButton.addEventListener('click', function() {
+                      mobileMenu.style.transform = 'translateX(0%)'
+                  })
+
+                  // On closeButton click, set the mobileMenu position to 0vw
+                  closeButton.addEventListener('click', function() {
+                      mobileMenu.style.transform = 'translateX(100%)'
+                  })
+                </script>
+              </div>
+            </div>
+          </div>
+          <header class="dataentry-header"></header>
+          <div class="dataentry-container4">
+            <div class="dataentry-container5">
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  margin: 20px;
+                  background-color: #5228F5; /* Updated background color */
+                }
+                .container {
+                  max-width: 500px;
+                  margin: 0 auto;
+                  padding: 30px;
+                  background-color: white;
+                  border-radius: 10px;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                  text-align: center;
+                  margin-bottom: 20px;
+                  color: #333;
+                }
+                label {
+                  display: block;
+                  margin-bottom: 5px;
+                  color: #333;
+                }
+                input, textarea {
+                  padding: 10px;
+                  width: 100%;
+                  margin-bottom: 15px;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+                }
+                button {
+                  padding: 15px 30px;
+                  background-color: #4CAF50;
+                  color: white;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  font-size: 16px;
+                }
+                button:hover {
+                  background-color: #45a049;
+                }
+              </style>
+
+              <div class="container">
+                <h2>QR Code Data Entry</h2>
+                <form id="dataEntryForm" onsubmit="submitData(event)">
+                  <label for="qrId">QR ID:</label>
+                  <input type="text" id="qrId" name="qrId"  />
+
+                  <label for="fullName">Full Name:</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="Name"
+                    required
+                  />
+
+                  <label for="age">Age:</label>
+                  <input type="number" id="age" name="age" required="" />
+
+                  <label for="bloodGroup">Blood Group:</label>
+                  <input
+                    type="text"
+                    id="bloodGroup"
+                    name="BloodGroup"
+                    required
+                  />
+
+                  <label for="medicalConditions">Pre-Medical Conditions:</label>
+                  <textarea
+                    id="medicalConditions"
+                    name="preMedicalInfo"
+                    rows="3"
+                    required
+                  ></textarea>
+
+                  <h3>Emergency Contacts:</h3>
+
+                  <label for="emergencyContact1Name">Contact 1 Name:</label>
+                  <input
+                    type="text"
+                    id="emergencyContact1Name"
+                    name="Name"
+                    required
+                  />
+
+                  <label for="emergencyContact1Relation">
+                    Contact 1 Relation:
+                  </label>
+                  <input
+                    type="text"
+                    id="emergencyContact1Relation"
+                    name="relation"
+                    required
+                  />
+
+                  <label for="emergencyContact1Number">Contact 1 Number:</label>
+                  <input
+                    type="tel"
+                    id="emergencyContact1Number"
+                    name="phoneNumber"
+                    required
+                  />
+
+                  <label for="emergencyContact2Name">Contact 2 Name:</label>
+                  <input
+                    type="text"
+                    id="emergencyContact2Name"
+                    name="Name"
+                    required
+                  />
+
+                  <label for="emergencyContact2Relation">
+                    Contact 2 Relation:
+                  </label>
+                  <input
+                    type="text"
+                    id="emergencyContact2Relation"
+                    name="relation"
+                    required
+                  />
+
+                  <label for="emergencyContact2Number">Contact 2 Number:</label>
+                  <input
+                    type="tel"
+                    id="emergencyContact2Number"
+                    name="phoneNumber"
+                    required
+                  />
+
+                  <button type="submit">Submit</button>
+                </form>
+
+             </div>
+              <script>
+
+function submitData(event) {
+  event.preventDefault();
+
+  // Check if all required fields are valid
+  const form = document.getElementById('dataEntryForm');
+  if (!form.checkValidity()) {
+    // If not all required fields are valid, display an error message
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const qrId = document.getElementById('qrId').value;
+  const fullName = document.getElementById('fullName').value;
+  const age = parseInt(document.getElementById('age').value); // Parse age as an integer
+  const bloodGroup = document.getElementById('bloodGroup').value;
+  const medicalConditions = document.getElementById('medicalConditions').value;
+
+  const emergencyContact1Name = document.getElementById('emergencyContact1Name').value;
+  const emergencyContact1Relation = document.getElementById('emergencyContact1Relation').value;
+  const emergencyContact1Number = document.getElementById('emergencyContact1Number').value;
+
+  const emergencyContact2Name = document.getElementById('emergencyContact2Name').value;
+  const emergencyContact2Relation = document.getElementById('emergencyContact2Relation').value;
+  const emergencyContact2Number = document.getElementById('emergencyContact2Number').value;
+
+  // Create a JavaScript object to hold the data
+  const data = {
+    QrId: qrId,
+    Name: fullName,
+    age: age,
+    BloodGroup: bloodGroup,
+    preMedicalInfo: medicalConditions,
+    EmergencyContact: {
+      Contact1: {
+        Name: emergencyContact1Name,
+        relation: emergencyContact1Relation,
+        phoneNumber: emergencyContact1Number,
+      },
+      Contact2: {
+        Name: emergencyContact2Name,
+        relation: emergencyContact2Relation,
+        phoneNumber: emergencyContact2Number,
+      },
+    },
+  };
+
+  // Convert the data object to a JSON string
+  const jsonData = JSON.stringify(data);
+  const url = `http://localhost:4000/api/v1/users/activate/${qrId}`;
+
+  // Use the fetch API to send the form data to the backend
+  fetch(url, {
+    method: 'POST',
+    body: jsonData,
+    headers: {
+      'Content-Type': 'application/json', // Set the content type to JSON
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert('Data submitted successfully!');
+      } else {
+        alert('Error submitting data. Please try again.');
+      }
+    })
+    .catch((error) => {
+      alert('An error occurred. Please try again later.');
+    });
+}
+
+              </script>
+            </div>
+          </div>
+        </section>
+        <footer class="dataentry-footer">
+          <div class="dataentry-top">
+            <div class="dataentry-left1">
+              <span class="dataentry-text06">Subscribe to our newsletter</span>
+              <div class="dataentry-subscription">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="dataentry-textinput input"
+                />
+                <div class="dataentry-subscribe">
+                  <span class="dataentry-text07">Subscribe</span>
+                </div>
+              </div>
+              <span class="dataentry-text08">
+                By subscribing to our newsletter you agree with our Terms and
+                Conditions.
+              </span>
+            </div>
+            <div class="dataentry-right1">
+              <div class="dataentry-category">
+                <div class="dataentry-contact">
+                  <span class="dataentry-text09">Contact</span>
+                  <a
+                    href="mailto:use@active-app.com?subject=Support"
+                    class="dataentry-link"
+                  >
+                    KavachQR@ridebuddy.app
+                  </a>
+                </div>
+              </div>
+              <div class="dataentry-container6">
+                <div class="dataentry-category1">
+                  <span class="dataentry-text10">Social Media Handles</span>
+                  <div class="dataentry-links2">
+                    <span class="dataentry-text11">Twitter</span>
+                    <span class="dataentry-text12">Linkedin</span>
+                    <span class="dataentry-text13">Instagram</span>
+                    <span class="dataentry-text14">Facebook</span>
+                  </div>
+                </div>
+                <div class="dataentry-category2">
+                  <span class="dataentry-text15">
+                    &nbsp; &nbsp; &nbsp; Company
+                  </span>
+                  <div class="dataentry-links3">
+                    <span class="dataentry-text16">About</span>
+                    <span class="dataentry-text17">Team</span>
+                    <span class="dataentry-text18">News</span>
+                    <span class="dataentry-text19">Partners</span>
+                    <span class="dataentry-text20">Careers</span>
+                    <span class="dataentry-text21">Press &amp; Media</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dataentry-bottom">
+            <img
+              alt="pastedImage"
+              src="public/logos/3-200h.png"
+              class="dataentry-branding"
+            />
+          </div>
+          <span class="dataentry-text22">
+            Copyright @AP Mobility India Private Limited
+          </span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
