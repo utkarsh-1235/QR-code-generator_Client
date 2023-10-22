@@ -46,7 +46,7 @@
 
       body::-webkit-scrollbar-thumb {
          background-color:white;
-         box-shadow:0 -100vh 0 100vh #5128f5;//magic
+         box-shadow:0 -100vh 0 100vh #5128f5;
        }
     </style>
   </head>
@@ -144,11 +144,11 @@
               </span>
               <br />
               <br />
-              <span>.</span>
+              <span></span>
             </p>
           </header>
           <form
-            id="Signup form"
+            id="Signup-form"
             name="Signup/Login form"
             action="SUBMIT"
             target="user"
@@ -157,21 +157,20 @@
             class="activatestep1-form"
           >
             <input
-              type="number"
-              id="phone number"
-              max="15"
-              min="10"
-              required=""
-              autofocus=""
-              placeholder="xxxxxxxxxxx"
+              type="text"
+              id="phone-number"
+              placeholder="Enter Qr id"
+              name="qrId"
               class="activatestep1-textinput input"
+              required
             />
             <span class="activatestep1-text12">
               &nbsp; Enter UNIQUE QR ID&nbsp; &nbsp;
             </span>
-            <a href="dataentry.html" class="activatestep1-navlink button">
+            <!-- <a href="dataentry.html" class="activatestep1-navlink button">
               Submit
-            </a>
+            </a> -->
+            <button class="activatestep1-navlink button"> Submit</button>
             <p class="activatestep1-text13">
               <span>Step 1:</span>
               <br />
@@ -181,6 +180,55 @@
               <br />
             </p>
           </form>
+          <script>
+            document.querySelector("#Signup-form").addEventListener("submit", function (event) {
+              event.preventDefault();
+              const QR = document.querySelector("#phone-number");
+              const userID = QR.value.trim(); // Get the QR ID entered by the user and trim any whitespace
+          
+              // Check if the user entered an empty QR ID
+              if (userID === '') {
+                alert('QR code cannot be empty. Please enter a valid QR code.');
+                return; // Exit the function if QR ID is empty
+              }
+          
+              function checkUserExistence(userID) {
+                // You should make an API request here to check if the QR is allotted.
+                // Replace the following with your actual API endpoint for checking QR allotment.
+                const apiEndpoint = `http://localhost:4000/api/v1/users/check-qr-allotment?userID=${userID}`;
+                 // Create a JSON object with the user ID
+             const requestData = { userID };
+
+          
+                // Make a GET request to the API
+                fetch(apiEndpoint,{method: "POST",
+            headers: {
+                   "Content-Type": "application/json",
+               },
+                body: JSON.stringify(requestData),
+    })
+    .then((response) => response.json())
+.then((data) => {
+  if (!data.success) {
+    console.log(data.user);
+  alert('An error occurred: ' + data.message);
+} else if (data.user && data.user.additionalInfo && data.user.additionalInfo.name && data.user.additionalInfo.age) {
+  console.log(data.user);
+  alert('QR code already allotted: ' + data.message);
+} else {
+  window.location.href = 'dataentry.html'; // Redirect to the next page
+}
+
+})
+.catch((error) => {
+  // Handle API request error
+  console.error('Error checking QR allotment:', error);
+});
+            }            // Call the checkUserExistence function with the provided user ID
+              checkUserExistence(userID);
+            });
+          </script>
+          
         </section>
         <footer class="activatestep1-footer">
           <div class="activatestep1-top">

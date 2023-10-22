@@ -176,13 +176,14 @@
 .activatestep1-textinput {
   top: 200px;
   left: 310px;
-  color: #ffffff;
+  /* color: #ffffff; */
   width: 209px;
   height: 46px;
   position: absolute;
   align-self: center;
   box-shadow: 5px 5px 10px 0px #d4d4d4;
   background-color: #ffffff;
+  
 }
 .activatestep1-text12 {
   top: 154px;

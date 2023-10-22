@@ -167,8 +167,8 @@
   line-height: 50px;
 }
 .signup-form {
-  width: 840px;
-  height: 329px;
+  width: 1000px;
+  height: 500px;
   display: flex;
   position: relative;
   align-items: center;
@@ -187,16 +187,42 @@
   background-color: #ffffff;
 }
 .signup-textinput1 {
-  top: 140px;
-  left: 320px;
+  top: 330px;
+  left: 450px;
   width: 209px;
   height: 46px;
   position: absolute;
   align-self: center;
 }
-.signup-text08 {
+.signup-inpCountryCode {
+  width: 80px; /* Adjust the width as needed */
+  padding: 10px;
+  margin-top:55px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 150px;
+  font-size: 16px;
+  outline: none; /* Remove the default input outline */
+}
+.signup-text088{
   top: 61px;
-  left: 75px;
+  left: 175px;
+  position: absolute;
+  align-self: center;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+  text-align: justify;
+  padding-top: 10px;
+  border-color: var(--dl-color-gray-black);
+  border-style: groove;
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius4);
+  text-transform: uppercase;
+  background-color: var(--dl-color-gray-white);
+  border-top-left-radius: var(--dl-radius-radius-radius8);
+}
+.signup-text08 {
+  top: 150px;
+  left: 175px;
   position: absolute;
   align-self: center;
   box-shadow: 5px 5px 10px 0px #d4d4d4;
@@ -211,8 +237,8 @@
   border-top-left-radius: var(--dl-radius-radius-radius8);
 }
 .signup-text09 {
-  top: 148px;
-  left: 156px;
+  top: 338px;
+  left: 250px;
   position: absolute;
   align-self: center;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px;
@@ -223,30 +249,45 @@
   border-width: 1px;
   border-radius: var(--dl-radius-radius-round);
   text-transform: uppercase;
-  background-color: rgb(217, 217, 217);
+  background-color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 .signup-inpPhone{
-   margin-top: 60px;
+   margin-top: 55px;
+   margin-left:150px;
    padding: 4px;
    height:40px;
    border-radius: 2px;
 }
+.signup-button2{
+  top: 250px;
+  position: absolute;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+}
 .signup-button {
-  top: 56px;
-  left: 564px;
+  top: 250px;
+  left: 300px;
   position: absolute;
   box-shadow: 5px 5px 10px 0px #d4d4d4;
 }
 .signup-button1 {
-  top: 58px;
-  right: 64px;
+  top: 328px;
+  right: 200px;
   width: 94px;
   height: 33px;
   position: absolute;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+}
+#signup-navlink1-button{
+  top: 228px;
+  right: 200px;
+  width: 94px;
+  height: 33px;
+  position: absolute;
+  background-color: white;
   box-shadow: 5px 5px 10px 0px #d4d4d4;
 }
 .signup-navlink1 {

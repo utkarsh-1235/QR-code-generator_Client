@@ -43,7 +43,7 @@
 
       body::-webkit-scrollbar-thumb {
          background-color:white;
-         box-shadow:0 -100vh 0 100vh #5128f5;//magic
+         box-shadow:0 -100vh 0 100vh #5128f5;
        }
     </style>
   </head>
@@ -146,16 +146,13 @@
             autocomplete="on"
             class="signup-form"
           >
-          <!-- <input
-          type="number"
-          id="phone_number" 
-          autofocus=""
-          placeholder="Enter Your Phone Number"
-          class="signup-textinput input"
-          name="phoneNumber"
-          required
-        /> -->
-
+          <input
+    type="text"
+    id="country-code"
+    placeholder="Country Code"
+    class="signup-inpCountryCode"
+    name="countryCode"
+     />
         <input 
         type="number"
         id="phone_number"
@@ -163,6 +160,7 @@
         placeholder="Enter Your Phone Number"
         class="signup-inpPhone"
         name="phoneNumber">
+
          <input
               type="number"
               id="phonenumber"
@@ -172,26 +170,121 @@
               name="otpCode"
               required
             />
+        
+            <span class="signup-text088">
+              &nbsp; Enter Country Code&nbsp; &nbsp;
+            </span>
+
             <span class="signup-text08">
               &nbsp; Enter Phone number&nbsp; &nbsp;
             </span>
             <span class="signup-text09">&nbsp; Enter OTP&nbsp;&nbsp;</span>
             <button type="button" class="signup-button button">Get OTP</button>
+            <button type="button" class="signup-button2 button">resend otp</button>
             <button type="button" class="signup-button1 button">
-              send&nbsp;
+              verify&nbsp;
             </button>
-            <!-- <a href="signupdetails.html" class="signup-navlink1 button">
-              Submit
-            </a> -->
+        
              <!-- Add an error message element -->
            <div id="error-message" class="error-message"></div>
 
            <!-- Add a submit button -->
-           <button id="signup-navlink1-button" class="signup-button1 button">
+           <button id="signup-navlink1-button" >
                 Submit
              </button>
              
              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+        // Get references to the input fields and buttons
+        const countryCodeInput = document.getElementById('country-code');
+        const phoneInput = document.getElementById('phone_number');
+        const otpInput = document.getElementById('phonenumber');
+        const getOtpButton = document.querySelector('.signup-button');
+        const sendOtpButton = document.querySelector('.signup-button1');
+        const resendOtpButton = document.querySelector('.signup-button2');
+        const form = document.getElementById('Signup form');
+    
+        // Add an event listener to the "Get OTP" button
+        getOtpButton.addEventListener('click', function() {
+          const countryCode = countryCodeInput.value;
+          const phoneNumber = phoneInput.value;
+          // You can add validation here to check if phoneNumber is valid
+    
+          // Send a request to the server to get OTP
+          fetch('http://localhost:4000/api/v1/users/send-otp', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({countryCode, phoneNumber}),
+            credentials: 'include', 
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response from the server
+              console.log(data);
+              // You can update the UI or show a success message here
+            })
+            .catch(error => {
+              console.error(error);
+              // Handle the error, show an error message, or retry the request
+            });
+        });
+    
+        // resend otp feature
+        resendOtpButton.addEventListener('click', function() {
+          const countryCode = countryCodeInput.value;
+          const phoneNumber = phoneInput.value;
+          // You can add validation here to check if phoneNumber is valid
+    
+          // Send a request to the server to get OTP
+          fetch('http://localhost:4000/api/v1/users/resend-otp', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({countryCode, phoneNumber}),
+            credentials: 'include', 
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response from the server
+              console.log(data);
+              // You can update the UI or show a success message here
+            })
+            .catch(error => {
+              console.error(error);
+              // Handle the error, show an error message, or retry the request
+            });
+        })
+        // Add an event listener to the "Send OTP" button (if needed)
+        sendOtpButton.addEventListener('click', function() {
+          const otp = otpInput.value;
+          const phoneNumber = phoneInput.value;
+          const countryCode = countryCodeInput.value;
+          // You can add validation here to check if otp is valid
+    
+          // Send a request to the server with the OTP
+          fetch('http://localhost:4000/api/v1/users/verify-otp', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({phoneNumber, countryCode, otp}),
+            credentials: 'include'
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response from the server
+              console.log(data);
+              // You can update the UI or show a success message here
+            })
+            .catch(error => {
+              console.error(error);
+              // Handle the error, show an error message, or retry the request
+            });
+        });
+      });
                // Function to check if all input fields are filled correctly
                function validateForm() {
                  // Get references to the input fields
@@ -288,70 +381,5 @@
         </footer>
       </div>
     </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Get references to the input fields and buttons
-        const phoneInput = document.getElementById('phone_number');
-        const otpInput = document.getElementById('phonenumber');
-        const getOtpButton = document.querySelector('.signup-button');
-        const sendOtpButton = document.querySelector('.signup-button1');
-        const form = document.getElementById('Signup form');
-    
-        // Add an event listener to the "Get OTP" button
-        getOtpButton.addEventListener('click', function() {
-          const phoneNumber = phoneInput.value;
-    
-          // You can add validation here to check if phoneNumber is valid
-    
-          // Send a request to the server to get OTP
-          fetch('http://localhost:4000/api/v1/users/send-otp', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ phoneNumber }),
-            credentials: 'include', 
-          })
-            .then(response => response.json())
-            .then(data => {
-              // Handle the response from the server
-              console.log(data);
-              // You can update the UI or show a success message here
-            })
-            .catch(error => {
-              console.error(error);
-              // Handle the error, show an error message, or retry the request
-            });
-        });
-    
-        // Add an event listener to the "Send OTP" button (if needed)
-        sendOtpButton.addEventListener('click', function() {
-          const otp = otpInput.value;
-    
-          // You can add validation here to check if otp is valid
-    
-          // Send a request to the server with the OTP
-          fetch('http://localhost:4000/api/v1/users/verify-otp', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ otp }),
-            credentials: 'include'
-          })
-            .then(response => response.json())
-            .then(data => {
-              // Handle the response from the server
-              console.log(data);
-              // You can update the UI or show a success message here
-            })
-            .catch(error => {
-              console.error(error);
-              // Handle the error, show an error message, or retry the request
-            });
-        });
-      });
-    </script>
-        
-  </body>
+    </body>
 </html>
