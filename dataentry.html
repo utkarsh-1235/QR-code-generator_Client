@@ -323,7 +323,7 @@ function submitData(event) {
 
   // Convert the data object to a JSON string
   const jsonData = JSON.stringify(data);
-  const url = `http://localhost:4000/api/v1/users/activate/${qrId}`;
+  const url = `http://localhost:4000/api/v1/qr/activate/${qrId}`;
 
   // Use the fetch API to send the form data to the backend
   fetch(url, {

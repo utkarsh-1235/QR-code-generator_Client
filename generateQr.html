@@ -32,6 +32,9 @@
     <h2>Generate QR Codes</h2>
     <p>Enter your phone number and click the button to generate QR codes.</p>
     <form id="generateQRForm">
+      <label for="countryCode"> Country code:</label>
+      <input type="text" id="countrycode" name="countryCode" required />
+      <br>
       <label for="phoneNumber">Phone Number:</label>
       <input type="text" id="phoneNumber" name="phoneNumber" required />
 
@@ -43,9 +46,14 @@
   <script>
     function generateQRCode() {
       const phoneNumber = document.getElementById('phoneNumber').value;
+      const countryCode = document.getElementById('countrycode').value;
 
       if (!phoneNumber) {
         document.getElementById('message').innerHTML = 'Please enter your phone number.';
+        return;
+      }
+      if (!countryCode) {
+        document.getElementById('message').innerHTML = 'Please enter country code.';
         return;
       }
 
@@ -54,7 +62,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ phoneNumber }),
+        body: JSON.stringify({ countryCode, phoneNumber}),
       })
         .then((response) => response.json())
         .then((data) => {

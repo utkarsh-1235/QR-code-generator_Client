@@ -184,7 +184,11 @@
             <button type="button" class="signup-button1 button">
               verify&nbsp;
             </button>
-        
+            <input
+            type="hidden"
+            id="verification-status"
+            value=""
+          />
              <!-- Add an error message element -->
            <div id="error-message" class="error-message"></div>
 
@@ -194,6 +198,7 @@
              </button>
              
              <script>
+                // let verificationStatus = document.getElementById('verification-status');    
                 document.addEventListener('DOMContentLoaded', function() {
         // Get references to the input fields and buttons
         const countryCodeInput = document.getElementById('country-code');
@@ -202,7 +207,9 @@
         const getOtpButton = document.querySelector('.signup-button');
         const sendOtpButton = document.querySelector('.signup-button1');
         const resendOtpButton = document.querySelector('.signup-button2');
+        //const verificationStatus = document.getElementById('verification-status');
         const form = document.getElementById('Signup form');
+        const submitButton = document.getElementById('signup-navlink1-button');
     
         // Add an event listener to the "Get OTP" button
         getOtpButton.addEventListener('click', function() {
@@ -278,35 +285,64 @@
               // Handle the response from the server
               console.log(data);
               // You can update the UI or show a success message here
+      //        verificationStatus.value = data.verificationStatus; // Update verificationStatus based on the server response
+        //      validateForm(); // Call the validation function after the response
             })
             .catch(error => {
               console.error(error);
               // Handle the error, show an error message, or retry the request
             });
         });
+
+        submitButton.addEventListener('click', function(){
+          const phoneNumber = phoneInput.value;
+          const countryCode = countryCodeInput.value;
+          fetch('http://localhost:4000/api/v1/users/userexist', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({countryCode, phoneNumber}),
+            credentials: 'include'
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response from the server
+             // console.log(data.existingUser.phoneNumber);
+              // if(data.success === true){
+              //   window.location.href = 'dashboard.html';
+              // }
+              // else{
+              //   window.location.href = 'signupdetails.html';
+              // }
+              console.log(data);
+              
+            })
+            .catch(error => {
+              console.error(error);
+              
+            });
+
+        });
       });
+
                // Function to check if all input fields are filled correctly
-               function validateForm() {
-                 // Get references to the input fields
-                 const phoneNumberInput = document.getElementById('phone_number');
-                 const otpInput = document.getElementById('phonenumber');
-                 const errorMessage = document.getElementById('error-message');
-             
-                 // Check if both input fields are filled
-                 if (phoneNumberInput.value.trim() === '' || otpInput.value.trim() === '') {
-                   // If any field is empty, display an error message
-                   errorMessage.textContent = 'Please fill in all required fields.';
-                 } else {
-                   // All fields are filled, so navigate to the next page
-                   window.location.href = 'signupdetails.html';
-                 }
-               }
+//                function validateForm() {
+//   // Get references to the input fields
+//   const phoneNumberInput = document.getElementById('phone_number');
+//   const otpInput = document.getElementById('phonenumber');
+//   const errorMessage = document.getElementById('error-message');
+
+ 
+// }
+
+
              
                // Get a reference to the submit button
-               const submitButton = document.getElementById('signup-navlink1-button');
+
              
                // Add a click event listener to the submit button
-               submitButton.addEventListener('click', validateForm);
+               
              </script>
              
           </form>

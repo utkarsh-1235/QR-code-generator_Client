@@ -46,7 +46,7 @@
 
       body::-webkit-scrollbar-thumb {
          background-color:white;
-         box-shadow:0 -100vh 0 100vh #5128f5;//magic
+         box-shadow:0 -100vh 0 100vh #5128f5;
        }
     </style>
   </head>
@@ -148,6 +148,20 @@
             autocomplete="on"
             class="signupdetails-form"
           >
+          <input 
+          type="text"
+          id="country"
+          placeholder="Re-Enter your country code"
+          class="signupdetails-textinput3 input"
+          required/>
+
+          <input 
+          type="text"
+          id="phone"
+          placeholder="Re-Enter your phone number"
+          class="signupdetails-textinput2 input"
+          required/>
+
             <input
               type="text"
               id="name"
@@ -160,20 +174,75 @@
             <input
               type="email"
               id="email"
-              required=""
               autofocus=""
               placeholder="xyz@gmail.com"
               autocomplete="email"
               class="signupdetails-textinput1 input"
             />
+            <span class="signupdetails-text082">
+              &nbsp; &nbsp; Country Code&nbsp; &nbsp;
+            </span>
+            <span class="signupdetails-text081">
+              &nbsp; &nbsp;Phone Number&nbsp; &nbsp;
+            </span>
             <span class="signupdetails-text08">
               &nbsp; &nbsp;Enter Your Name&nbsp; &nbsp;
             </span>
             <span class="signupdetails-text09">&nbsp; Email&nbsp; &nbsp;</span>
-            <a href="dashboard.html" class="signupdetails-navlink button">
+            <button id="finish-button" class="signupdetails-navlink button">Finish</button>
+            <!-- <a href="dashboard.html" class="signupdetails-navlink button">
               Finish
-            </a>
+            </a> -->
           </form>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+        const finishButton = document.getElementById("finish-button");
+
+        finishButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Get the input values
+            const country = document.getElementById("country").value
+            const phone = document.getElementById("phone").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            // Prepare the data to send
+            const data = {
+              countryCode: country,
+                phoneNumber: phone,
+                name: name,
+                email: email,
+            };
+
+            // Send a POST request to your server
+            fetch("http://localhost:4000/api/v1/users/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Handle the response from the server
+                    console.log(data);
+
+                    if(data.success === true){
+                      window.location.href = 'dashboard.html'
+                    }
+                    else{
+                      alert("you are not registered ")
+                    }
+                    // You can redirect the user to another page or show a success message here
+                })
+                .catch((error) => {
+                    console.error(error);
+                    // Handle the error, show an error message, or retry the request
+                });
+        });
+    });
+          </script>
         </section>
         <footer class="signupdetails-footer">
           <div class="signupdetails-top">
