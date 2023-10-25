@@ -184,38 +184,40 @@
             document.querySelector("#Signup-form").addEventListener("submit", function (event) {
               event.preventDefault();
               const QR = document.querySelector("#phone-number");
-              const userID = QR.value.trim(); // Get the QR ID entered by the user and trim any whitespace
+              const qrId = QR.value.trim(); // Get the QR ID entered by the user and trim any whitespace
           
               // Check if the user entered an empty QR ID
-              if (userID === '') {
+              if (qrId === '') {
                 alert('QR code cannot be empty. Please enter a valid QR code.');
                 return; // Exit the function if QR ID is empty
               }
           
-              function checkUserExistence(userID) {
+              function checkUserExistence(qrId) {
                 // You should make an API request here to check if the QR is allotted.
                 // Replace the following with your actual API endpoint for checking QR allotment.
-                const apiEndpoint = `http://localhost:4000/api/v1/users/check-qr-allotment?userID=${userID}`;
+                const apiEndpoint = `http://localhost:4000/api/v1/qr/check-qr-allotment/${qrId}`;
                  // Create a JSON object with the user ID
-             const requestData = { userID };
+             const requestData = { qrId };
 
           
                 // Make a GET request to the API
-                fetch(apiEndpoint,{method: "POST",
-            headers: {
+                fetch(apiEndpoint,{
+                  method: "POST",
+                  headers: {
                    "Content-Type": "application/json",
                },
                 body: JSON.stringify(requestData),
     })
     .then((response) => response.json())
 .then((data) => {
+  console.log(data.user);
   if (!data.success) {
     console.log(data.user);
   alert('An error occurred: ' + data.message);
-} else if (data.user && data.user.additionalInfo && data.user.additionalInfo.name && data.user.additionalInfo.age) {
-  console.log(data.user);
+} else if (data.user && data.user.additionalInfo) {
+  //console.log(data.user);
   alert('QR code already allotted: ' + data.message);
-} else {
+} else if(!data.user) {
   window.location.href = 'dataentry.html'; // Redirect to the next page
 }
 
@@ -225,7 +227,7 @@
   console.error('Error checking QR allotment:', error);
 });
             }            // Call the checkUserExistence function with the provided user ID
-              checkUserExistence(userID);
+              checkUserExistence(qrId);
             });
           </script>
           

@@ -309,13 +309,14 @@
             .then(data => {
               // Handle the response from the server
              // console.log(data.existingUser.phoneNumber);
-              // if(data.success === true){
-              //   window.location.href = 'dashboard.html';
-              // }
-              // else{
-              //   window.location.href = 'signupdetails.html';
-              // }
-              console.log(data);
+             console.log(data);
+              if(data.existingUser.verified === true){
+                window.location.href = 'dashboard.html';
+              }
+              else if(data.existingUser.verified === false){
+                window.location.href = 'signupdetails.html';
+              }
+              
               
             })
             .catch(error => {

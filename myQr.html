@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit QR Code Data</title>
+  <!-- Add your meta tags and CSS links here -->
+</head>
+<body>
+  <!-- <link rel="stylesheet" href="./style.css" /> -->
+  <div>
+    <!-- <link href="./edit-qr.css" rel="stylesheet" /> -->
+    <div class="edit-qr-container">
+      <section class="edit-qr-hero">
+        <!-- Header content can be copied from the previous HTML file -->
+      </section>
+      <footer class="edit-qr-footer">
+        <!-- Footer content can be copied from the previous HTML file -->
+      </footer>
+    </div>
+  </div>
+
+  <!-- Edit QR Code Form -->
+  <div class="edit-qr-form">
+    <h2>Edit QR Code Data</h2>
+    <form id="editQRForm" onsubmit="editQRData(event)">
+      <label for="qrId">QR ID:</label>
+      <input type="text" id="qrId" name="qrId" readonly />
+
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="Name"/>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age"/>
+
+      <label for="bloodGroup">Blood Group:</label>
+      <input type="text" id="bloodGroup" name="BloodGroup"/>
+
+      <label for="preMedicalInfo">Pre-Medical Conditions:</label>
+      <textarea id="preMedicalInfo" name="preMedicalInfo" rows="3"></textarea>
+
+      <label for="vehicleNumber">Vehicle Number:</label>
+      <input type="text" id="vehicleNumber" name="vehicleNumber"/>
+
+      <h3>Emergency Contacts:</h3>
+
+      <label for="emergencyContact1Name">Contact 1 Name:</label>
+      <input type="text" id="emergencyContact1Name" name="emergencyContact1Name"/>
+
+      <label for="emergencyContact1Relation">Contact 1 Relation:</label>
+      <input type="text" id="emergencyContact1Relation" name="emergencyContact1Relation"/>
+
+      <label for="emergencyContact1Number">Contact 1 Number:</label>
+      <input type="tel" id="emergencyContact1Number" name="emergencyContact1Number"/>
+
+      <label for="emergencyContact2Name">Contact 2 Name:</label>
+      <input type="text" id="emergencyContact2Name" name="emergencyContact2Name"/>
+
+      <label for="emergencyContact2Relation">Contact 2 Relation:</label>
+      <input type="text" id="emergencyContact2Relation" name="emergencyContact2Relation"/>
+
+      <label for="emergencyContact2Number">Contact 2 Number:</label>
+      <input type="tel" id="emergencyContact2Number" name="emergencyContact2Number"/>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+
+  
+  </script>
+</body>
+</html>
