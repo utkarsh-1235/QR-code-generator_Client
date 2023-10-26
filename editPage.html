@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>dataentry - Active Online Software Page</title>
-    <title>QR Code Data Entry</title>
+    <title>Edit Qr</title>
     <meta
       property="og:title"
       content="dataentry - Active Online Software Page"
@@ -65,11 +65,11 @@
                 src="public/pastedimage-no9b-1500h.png"
                 class="dataentry-logo"
               />
-              <div class="dataentry-links">
+              <!-- <div class="dataentry-links">
                 <span class="Link">Solutions</span>
                 <span class="Link">How it works</span>
                 <span class="Link">Prices</span>
-              </div>
+              </div> -->
               <div id="close-mobile-menu" class="dataentry-close-mobile-menu">
                 <svg
                   viewBox="0 0 804.5714285714286 1024"
@@ -90,11 +90,11 @@
                     class="dataentry-logo1"
                   />
                 </div>
-                <div class="dataentry-links1">
+                <!-- <div class="dataentry-links1">
                   <span class="Link">Dashboard</span>
                   <span class="Link">How it works</span>
                   <span class="Link">Help</span>
-                </div>
+                </div> -->
                 <div class="dataentry-left"></div>
                 <div class="dataentry-right">
                   <div id="open-mobile-menu" class="dataentry-burger-menu">
@@ -183,10 +183,10 @@
               </style>
 
               <div class="container">
-                <h2>QR Code Data Entry</h2>
+                <h2> You can edit QR Entry</h2>
                 <form id="dataEntryForm" onsubmit="submitData(event)">
                   <label for="qrId">QR ID:</label>
-                  <input type="text" id="qrId" name="qrId"  />
+                  <input type="text" id="qrId" name="qrId"  readonly/>
 
                   <label for="fullName">Full Name:</label>
                   <input
@@ -195,11 +195,11 @@
                     name="Name"
                     required
                   />
-                  <label for="country-code">Country Code:</label>
+                  <!-- <label for="country-code">Country Code:</label>
                   <input type="number" id="country" name="countryCode" required="" />
 
                   <label for="phone-number">Phone Number:</label>
-                  <input type="number" id="phoneNumber" name="phoneNumber" required="" />
+                  <input type="number" id="phoneNumber" name="phoneNumber" required="" /> -->
 
                   <label for="age">Age:</label>
                   <input type="number" id="age" name="age" required="" />
@@ -281,6 +281,21 @@
 
              </div>
               <script>
+                 const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('qrId').value = urlParams.get('qrId');
+        document.getElementById('fullName').value = urlParams.get('Name');
+        document.getElementById('country').value = urlParams.get('countryCode');
+        document.getElementById('phoneNumber').value = urlParams.get('phoneNumber');
+        document.getElementById('age').value = urlParams.get('age');
+        document.getElementById('bloodGroup').value = urlParams.get('bloodGroup');
+        document.getElementById('vehicle-number').value = urlParams.get('vehicleNumber');
+        document.getElementById('preMedicalInfo').value = urlParams.get('PreMedicalInfo');
+        document.getElementById('emergencyContact1Name').value = urlParams.get('emergencyContact1Name');
+        document.getElementById('emergencyContact1Relation').value = urlParams.get('emergencyContact1Relation');
+        document.getElementById('emergencyContact1Number').value = urlParams.get('emergencyContact1Number');
+        document.getElementById('emergencyContact2Name').value = urlParams.get('emergencyContact2Name');
+        document.getElementById('emergencyContact2Relation').value = urlParams.get('emergencyContact2Relation');
+        document.getElementById('emergencyContact2Number').value = urlParams.get('emergencyContact2Number');
 
 function submitData(event) {
   event.preventDefault();
@@ -336,11 +351,11 @@ function submitData(event) {
 
   // Convert the data object to a JSON string
   const jsonData = JSON.stringify(data);
-  const url = `http://localhost:4000/api/v1/qr/activate/${qrId}`;
+  const url = `http://localhost:4000/api/v1/qr/edit-qr`;
 
   // Use the fetch API to send the form data to the backend
   fetch(url, {
-    method: 'POST',
+    method: 'PUT',
     body: jsonData,
     headers: {
       'Content-Type': 'application/json', // Set the content type to JSON
@@ -348,9 +363,9 @@ function submitData(event) {
   })
     .then((response) => {
       if (response.ok) {
-        alert('Data submitted successfully!');
+        alert('Data Edited successfully!');
       } else {
-        alert('Error submitting data. Please try again.');
+        alert('Error editing in data. Please try again.');
       }
     })
     .catch((error) => {

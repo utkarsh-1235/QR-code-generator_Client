@@ -140,10 +140,8 @@
           <form
             id="Signup form"
             name="Signup/Login form"
-            action="SUBMIT"
+            method="post"
             target="user"
-            enctype="application/x-www-form-urlencoded"
-            autocomplete="on"
             class="signup-form"
           >
           <input
@@ -193,10 +191,10 @@
            <div id="error-message" class="error-message"></div>
 
            <!-- Add a submit button -->
-           <button id="signup-navlink1-button" >
-                Submit
+           <button id="signup-navlink1-button" >submit
+              <!-- <input type="submit" id="signup-navlink1-button"/> -->
              </button>
-             
+             </form>
              <script>
                 // let verificationStatus = document.getElementById('verification-status');    
                 document.addEventListener('DOMContentLoaded', function() {
@@ -209,7 +207,7 @@
         const resendOtpButton = document.querySelector('.signup-button2');
         //const verificationStatus = document.getElementById('verification-status');
         const form = document.getElementById('Signup form');
-        const submitButton = document.getElementById('signup-navlink1-button');
+         const submitButton = document.getElementById('signup-navlink1-button');
     
         // Add an event listener to the "Get OTP" button
         getOtpButton.addEventListener('click', function() {
@@ -294,37 +292,85 @@
             });
         });
 
-        submitButton.addEventListener('click', function(){
-          const phoneNumber = phoneInput.value;
-          const countryCode = countryCodeInput.value;
-          fetch('http://localhost:4000/api/v1/users/userexist', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({countryCode, phoneNumber}),
-            credentials: 'include'
-          })
-            .then(response => response.json())
-            .then(data => {
-              // Handle the response from the server
-             // console.log(data.existingUser.phoneNumber);
-             console.log(data);
-              if(data.existingUser.verified === true){
-                window.location.href = 'dashboard.html';
-              }
-              else if(data.existingUser.verified === false){
-                window.location.href = 'signupdetails.html';
-              }
+    //     submitButton.addEventListener('click', function(e){
+    //       //console.log("data submitted");
+    //       e.preventDefault();
+    //       const phoneNumber = phoneInput.value;
+    //       const countryCode = countryCodeInput.value;
+    //       fetch('http://localhost:4000/api/v1/users/user-exist', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({countryCode, phoneNumber}),
+    //         credentials: 'include'
+    //       })
+    //         .then(response => {
+    //           if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //   }
+    //   return response.json();
+    // })
+    //         .then(data => {
+    //           // Handle the response from the server
+    //          // console.log(data.existingUser.phoneNumber);
+             
+    //          if(data.success === true){
+                
+    //             window.location.href = 'dashboard.html';
+    //             // console.log('user verified')
+    //           }
+    //           else if(data.success === false){
+    //             window.location.href = 'signupdetails.html';
+    //             // console.log('user not verified')
+    //           }
               
               
-            })
-            .catch(error => {
-              console.error(error);
+    //         })
+    //         .catch(error => {
+    //           console.error(error);
               
-            });
+    //         });
 
-        });
+    //     });
+    submitButton.addEventListener('click', function (e) {
+  e.preventDefault();
+  const phoneNumber = phoneInput.value;
+  const countryCode = countryCodeInput.value;
+
+  fetch('http://localhost:4000/api/v1/users/user-exist', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ countryCode, phoneNumber }),
+    credentials: 'include',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text(); // Read the response as text
+    })
+    .then((data) => {
+      try {
+        const parsedData = JSON.parse(data);
+        if (parsedData.success === true) {
+          window.location.href = 'dashboard.html';
+        } else if (parsedData.success === false) {
+          window.location.href = 'signupdetails.html';
+        } else {
+          console.error('Unexpected server response:', parsedData);
+        }
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
       });
 
                // Function to check if all input fields are filled correctly
@@ -346,7 +392,7 @@
                
              </script>
              
-          </form>
+          
         </section>
         <footer class="signup-footer">
           <div class="signup-top">

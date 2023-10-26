@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number</title>
+    <link rel="stylesheet" href="./signupdetails.css">
+</head>
+<style>
+    form{
+        margin-top: 20px ;
+        margin-left: 300px;
+    }
+    .signupdetails-text082{
+        background-color: white;
+    }
+    .signupdetails-text081{
+        background-color: white;
+    }
+</style>
+<body>
+
+    <form
+            id="Signup form"
+            name="Signup/Login form"
+            action="SUBMIT"
+            target="user"
+            enctype="application/x-www-form-urlencoded"
+            autocomplete="on"
+            class="signupdetails-form"
+          >
+          <input 
+          type="text"
+          id="country"
+          placeholder="Re-Enter your country code"
+          class="signupdetails-textinput3 input"
+          required/>
+
+          <input 
+          type="text"
+          id="phone"
+          placeholder="Re-Enter your phone number"
+          class="signupdetails-textinput2 input"
+          required/>
+
+            
+            <span class="signupdetails-text082">
+              &nbsp; &nbsp; Country Code&nbsp; &nbsp;
+            </span>
+            <span class="signupdetails-text081">
+              &nbsp; &nbsp;Phone Number&nbsp; &nbsp;
+            </span>
+            
+            <button id="finish-button" class="signupdetails-navlink button">Finish</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const finishButton = document.getElementById("finish-button");
+
+    finishButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // Get the input values
+        const country = document.getElementById("country").value
+        const phoneNumber = document.getElementById("phone").value;
+        
+
+        // Prepare the data to send
+        const data = {
+          countryCode: country,
+            phoneNumber: phoneNumber
+        };
+
+        // Send a POST request to your server
+        fetch(`http://localhost:4000/api/v1/qr/get-qr?phoneNumber=${phoneNumber}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+            credentials: 'include',
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the server
+                console.log(data);
+
+          // Inside your fetch response handling:
+if (data.success === true) {
+  const userDetails = {
+    phoneNumber: phoneNumber,
+  };
+  // Convert the user details to a query string
+  const userDetailsQueryString = new URLSearchParams(userDetails).toString();
+  // Redirect to the next page with user details in the URL
+  window.location.href = `myQr.html?${userDetailsQueryString}`;
+} else {
+  alert("No Qr associated with this number");
+}
+
+                // You can redirect the user to another page or show a success message here
+            })
+            .catch((error) => {
+                console.error(error);
+                // Handle the error, show an error message, or retry the request
+            });
+    });
+});
+      </script>
+</body>
+</html>

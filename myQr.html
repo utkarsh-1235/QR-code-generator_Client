@@ -1,70 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Edit QR Code Data</title>
-  <!-- Add your meta tags and CSS links here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Details</title>
+    <!-- Add your CSS file here -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
-  <!-- <link rel="stylesheet" href="./style.css" /> -->
-  <div>
-    <!-- <link href="./edit-qr.css" rel="stylesheet" /> -->
-    <div class="edit-qr-container">
-      <section class="edit-qr-hero">
-        <!-- Header content can be copied from the previous HTML file -->
-      </section>
-      <footer class="edit-qr-footer">
-        <!-- Footer content can be copied from the previous HTML file -->
-      </footer>
+    <div class="container">
+        <h1>All QR Codes</h1>
+
+        <!-- Display QR codes details here -->
+        <div class="qr-details" id="qrDetails">
+          <!--  QR codes will be dynamically added here  -->
+        </div>
     </div>
-  </div>
 
-  <!-- Edit QR Code Form -->
-  <div class="edit-qr-form">
-    <h2>Edit QR Code Data</h2>
-    <form id="editQRForm" onsubmit="editQRData(event)">
-      <label for="qrId">QR ID:</label>
-      <input type="text" id="qrId" name="qrId" readonly />
+    <!-- Add your JavaScript file here -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const phoneNumber = urlParams.get('phoneNumber');
+        document.addEventListener('DOMContentLoaded', () => {
+          const data = {
+//  countryCode: country,
+  phoneNumber: phoneNumber
+};
 
-      <label for="fullName">Full Name:</label>
-      <input type="text" id="fullName" name="Name"/>
+            // Make an API request to retrieve all QR codes using a GET request
+            fetch(`http://localhost:4000/api/v1/qr/get-qr?phoneNumber=${phoneNumber}`, {
+              method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+            credentials: 'include',
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age"/>
+                    if (data.success === true && data.qrCodes.length > 0) {
+  const qrDetailsContainer = document.getElementById('qrDetails');
 
-      <label for="bloodGroup">Blood Group:</label>
-      <input type="text" id="bloodGroup" name="BloodGroup"/>
+  // Loop through each QR code and create elements to display them
+  data.qrCodes.forEach((qrCode) => {
+    const qrCodeDiv = document.createElement('div');
+    qrCodeDiv.classList.add('qr-code');
 
-      <label for="preMedicalInfo">Pre-Medical Conditions:</label>
-      <textarea id="preMedicalInfo" name="preMedicalInfo" rows="3"></textarea>
+    const qrIdElement = document.createElement('strong');
+    qrIdElement.textContent = 'QR ID: ';
+    qrCodeDiv.appendChild(qrIdElement);
 
-      <label for="vehicleNumber">Vehicle Number:</label>
-      <input type="text" id="vehicleNumber" name="vehicleNumber"/>
+    const qrIdSpan = document.createElement('span');
+    qrIdSpan.textContent = qrCode.QrId;
+    qrCodeDiv.appendChild(qrIdSpan);
 
-      <h3>Emergency Contacts:</h3>
+    const qrIdAdditional = document.createElement('strong');
+    qrIdAdditional.textContent = 'Additional Info: ';
+    qrCodeDiv.appendChild(qrIdAdditional);
 
-      <label for="emergencyContact1Name">Contact 1 Name:</label>
-      <input type="text" id="emergencyContact1Name" name="emergencyContact1Name"/>
+    // Display additional information
+    const additionalInfo = qrCode.additionalInfo;
+    if (additionalInfo) {
+      // Display age
+      if (additionalInfo.age) {
+        const ageElement = document.createElement('div');
+        ageElement.textContent = `Age: ${additionalInfo.age}`;
+        qrCodeDiv.appendChild(ageElement);
+      }
 
-      <label for="emergencyContact1Relation">Contact 1 Relation:</label>
-      <input type="text" id="emergencyContact1Relation" name="emergencyContact1Relation"/>
+      // Display blood group
+      if (additionalInfo.BloodGroup) {
+        const bloodGroupElement = document.createElement('div');
+        bloodGroupElement.textContent = `Blood Group: ${additionalInfo.BloodGroup}`;
+        qrCodeDiv.appendChild(bloodGroupElement);
+      }
 
-      <label for="emergencyContact1Number">Contact 1 Number:</label>
-      <input type="tel" id="emergencyContact1Number" name="emergencyContact1Number"/>
+      // Display pre-medical info
+      if (additionalInfo.preMedicalInfo) {
+        const preMedicalInfoElement = document.createElement('div');
+        preMedicalInfoElement.textContent = `Pre-Medical Info: ${additionalInfo.preMedicalInfo}`;
+        qrCodeDiv.appendChild(preMedicalInfoElement);
+      }
 
-      <label for="emergencyContact2Name">Contact 2 Name:</label>
-      <input type="text" id="emergencyContact2Name" name="emergencyContact2Name"/>
+      // Display vehicle number
+      if (additionalInfo.vehicleNumber) {
+        const vehicleNumberElement = document.createElement('div');
+        vehicleNumberElement.textContent = `Vehicle Number: ${additionalInfo.vehicleNumber}`;
+        qrCodeDiv.appendChild(vehicleNumberElement);
+      }
 
-      <label for="emergencyContact2Relation">Contact 2 Relation:</label>
-      <input type="text" id="emergencyContact2Relation" name="emergencyContact2Relation"/>
+      // Display emergency contact info
+      const emergencyContact = additionalInfo.EmergencyContact;
+      if (emergencyContact) {
+        const emergencyContactsElement = document.createElement('div');
+        emergencyContactsElement.textContent = 'Emergency Contacts:';
 
-      <label for="emergencyContact2Number">Contact 2 Number:</label>
-      <input type="tel" id="emergencyContact2Number" name="emergencyContact2Number"/>
+        // Display Contact 1
+        if (emergencyContact.Contact1) {
+          const contact1 = emergencyContact.Contact1;
+          const contact1Element = document.createElement('div');
+          contact1Element.textContent = `Contact 1: ${contact1.Name} (${contact1.relation}) - ${contact1.phoneNumber}`;
+          emergencyContactsElement.appendChild(contact1Element);
+        }
 
-      <button type="submit">Save Changes</button>
-    </form>
-  </div>
+        // Display Contact 2
+        if (emergencyContact.Contact2) {
+          const contact2 = emergencyContact.Contact2;
+          const contact2Element = document.createElement('div');
+          contact2Element.textContent = `Contact 2: ${contact2.Name} (${contact2.relation}) - ${contact2.phoneNumber}`;
+          emergencyContactsElement.appendChild(contact2Element);
+        }
 
-  
-  </script>
+        qrCodeDiv.appendChild(emergencyContactsElement);
+      }
+    }
+
+    const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.addEventListener('click', () => {
+                    // Handle the edit action for this QR code
+                    editQRInformation(qrCode);
+                });
+                qrCodeDiv.appendChild(editButton);
+    // Append the QR code details to the container
+    qrDetailsContainer.appendChild(qrCodeDiv);
+  });
+} else {
+  console.error('Failed to retrieve QR codes');
+}
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+        function editQRInformation(qrCode) {
+    // Construct a query string from the QR code data
+    const queryParams = new URLSearchParams();
+    queryParams.set('qrId', qrCode.QrId);
+    queryParams.set('Name', qrCode.additionalInfo.Name || '');
+    queryParams.set('age', qrCode.additionalInfo.age || '');
+    queryParams.set('bloodGroup', qrCode.additionalInfo.BloodGroup || '');
+    queryParams.set('PreMedicalInfo', qrCode.additionalInfo.preMedicalInfo || '');
+
+    
+    if (qrCode.additionalInfo.EmergencyContact) {
+  const emergencyContact = qrCode.additionalInfo.EmergencyContact;
+  if (emergencyContact.Contact1) {
+    queryParams.set('emergencyContact1Name', emergencyContact.Contact1.Name || '');
+    queryParams.set('emergencyContact1Relation', emergencyContact.Contact1.relation || '');
+    queryParams.set('emergencyContact1Number', emergencyContact.Contact1.phoneNumber || '');
+  }
+  if (emergencyContact.Contact2) {
+    queryParams.set('emergencyContact2Name', emergencyContact.Contact2.Name || '');
+    queryParams.set('emergencyContact2Relation', emergencyContact.Contact2.relation || '');
+    queryParams.set('emergencyContact2Number', emergencyContact.Contact2.phoneNumber || '');
+  }
+}
+
+    // Redirect to the edit page with the query parameters
+    window.location.href = `editPage.html?${queryParams.toString()}`;
+}
+
+    </script>
 </body>
 </html>
