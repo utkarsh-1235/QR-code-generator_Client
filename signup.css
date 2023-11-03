@@ -737,8 +737,10 @@
     left: 130px;
   }
   .signup-textinput1 {
-    top: 241px;
-    left: 140px;
+    top: 300px;
+    left: 220px;
+    height: 25px;
+    width: 100px;
   }
   .signup-text08 {
     top: 17px;

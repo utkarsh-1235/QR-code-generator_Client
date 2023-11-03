@@ -276,26 +276,31 @@
                     required
                   />
 
-                  <button type="submit">Submit</button>
+                  <button type="submit" id="submitButton">Submit</button>
                 </form>
 
              </div>
               <script>
-                 const urlParams = new URLSearchParams(window.location.search);
+                document.addEventListener("DOMContentLoaded", function() {
+                    const urlParams = new URLSearchParams(window.location.search);
         document.getElementById('qrId').value = urlParams.get('qrId');
         document.getElementById('fullName').value = urlParams.get('Name');
-        document.getElementById('country').value = urlParams.get('countryCode');
-        document.getElementById('phoneNumber').value = urlParams.get('phoneNumber');
+        // document.getElementById('country').value = urlParams.get('countryCode');
+        // document.getElementById('phoneNumber').value = urlParams.get('phoneNumber');
         document.getElementById('age').value = urlParams.get('age');
         document.getElementById('bloodGroup').value = urlParams.get('bloodGroup');
         document.getElementById('vehicle-number').value = urlParams.get('vehicleNumber');
-        document.getElementById('preMedicalInfo').value = urlParams.get('PreMedicalInfo');
+        document.getElementById('medicalConditions').value = urlParams.get('preMedicalInfo');
         document.getElementById('emergencyContact1Name').value = urlParams.get('emergencyContact1Name');
         document.getElementById('emergencyContact1Relation').value = urlParams.get('emergencyContact1Relation');
         document.getElementById('emergencyContact1Number').value = urlParams.get('emergencyContact1Number');
         document.getElementById('emergencyContact2Name').value = urlParams.get('emergencyContact2Name');
         document.getElementById('emergencyContact2Relation').value = urlParams.get('emergencyContact2Relation');
         document.getElementById('emergencyContact2Number').value = urlParams.get('emergencyContact2Number');
+
+        
+// const form = document.getElementById('dataEntryForm');
+// form.addEventListener('submit', submitData);
 
 function submitData(event) {
   event.preventDefault();
@@ -334,6 +339,7 @@ function submitData(event) {
     countryCode: countryCode,
     phoneNumber: phoneNumber,
     BloodGroup: bloodGroup,
+    vehicleNumber: vehicleNumber,
     preMedicalInfo: medicalConditions,
     EmergencyContact: {
       Contact1: {
@@ -350,12 +356,15 @@ function submitData(event) {
   };
 
   // Convert the data object to a JSON string
+ 
+
+ 
   const jsonData = JSON.stringify(data);
   const url = `http://localhost:4000/api/v1/qr/edit-qr`;
 
   // Use the fetch API to send the form data to the backend
   fetch(url, {
-    method: 'PUT',
+    method: 'POST',
     body: jsonData,
     headers: {
       'Content-Type': 'application/json', // Set the content type to JSON
@@ -372,6 +381,9 @@ function submitData(event) {
       alert('An error occurred. Please try again later.');
     });
 }
+   
+});
+
 
               </script>
             </div>

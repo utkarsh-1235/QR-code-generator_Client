@@ -6,11 +6,30 @@
     <title>QR Code Details</title>
     <!-- Add your CSS file here -->
     <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+  .container{
+      margin-top: 100px;
+      margin-left: 300px;  
+      }
+      .container h1{
+        text-align: center;
+        
+      }
+      #qrDetails{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        height: 300px;
+        
+      }
+    </style>
+    
 </head>
 <body>
     <div class="container">
         <h1>All QR Codes</h1>
-
+   
         <!-- Display QR codes details here -->
         <div class="qr-details" id="qrDetails">
           <!--  QR codes will be dynamically added here  -->
@@ -56,6 +75,12 @@
     qrIdSpan.textContent = qrCode.QrId;
     qrCodeDiv.appendChild(qrIdSpan);
 
+    // if (qrCode.qrCodeImage) {
+    // const qrCodeImage = document.createElement('img');
+    // qrCodeImage.src = qrCode.qrCodeImage; // Set the image source
+    // qrCodeImage.alt = 'QR Code Image'; // Set the alternative text for the image
+    // qrCodeDiv.appendChild(qrCodeImage);
+    //  }
     const qrIdAdditional = document.createElement('strong');
     qrIdAdditional.textContent = 'Additional Info: ';
     qrCodeDiv.appendChild(qrIdAdditional);
@@ -89,6 +114,7 @@
         const vehicleNumberElement = document.createElement('div');
         vehicleNumberElement.textContent = `Vehicle Number: ${additionalInfo.vehicleNumber}`;
         qrCodeDiv.appendChild(vehicleNumberElement);
+  
       }
 
       // Display emergency contact info
@@ -143,8 +169,8 @@
     queryParams.set('Name', qrCode.additionalInfo.Name || '');
     queryParams.set('age', qrCode.additionalInfo.age || '');
     queryParams.set('bloodGroup', qrCode.additionalInfo.BloodGroup || '');
-    queryParams.set('PreMedicalInfo', qrCode.additionalInfo.preMedicalInfo || '');
-
+    queryParams.set('vehicleNumber', qrCode.additionalInfo.vehicleNumber || '');
+    queryParams.set('preMedicalInfo', qrCode.additionalInfo.preMedicalInfo || '');
     
     if (qrCode.additionalInfo.EmergencyContact) {
   const emergencyContact = qrCode.additionalInfo.EmergencyContact;
